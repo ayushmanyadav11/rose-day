@@ -26,7 +26,7 @@ body {
     z-index: 2;
 }
 
-/* Fallen Roses (NO animation) */
+/* Roses resting near text (NO animation) */
 .rose {
     position: absolute;
     font-size: 2.8em;
@@ -90,7 +90,7 @@ button {
 }
 
 .shayari {
-    font-size: 1.25em;
+    font-size: 1.3em;
     margin: 20px;
     color: #b30047;
 }
@@ -116,7 +116,7 @@ button {
 <!-- Center Text -->
 <div id="centerText">Happy Rose Day 🌹</div>
 
-<!-- Fallen Roses around text -->
+<!-- Roses resting near the text -->
 <span class="rose" style="top:55%; left:42%">🌹</span>
 <span class="rose" style="top:52%; left:58%">🌹</span>
 <span class="rose" style="top:48%; left:38%">🌹</span>
@@ -146,7 +146,7 @@ button {
 
   <div class="shayari">
     “Gulaab se zyada tum laal lagti ho,<br>
-    baaton mein nahi—khamoshi mein kamaal lagti ho.”
+    khamoshi mein nahi—baaton mein kamaal lagti ho.”
   </div>
 
   <img id="slideImg" class="slide" src="img1.jpg.jpeg">
@@ -175,22 +175,14 @@ function goYes() {
   document.getElementById("centerText").style.display = "none";
   document.querySelectorAll(".rose").forEach(r => r.remove());
   document.getElementById("slideshowPage").style.display = "block";
-
   document.getElementById("bgMusic").play();
 }
 
-/* Slideshow images */
+/* Slideshow */
 const images = [
-  "img1.jpg.jpeg",
-  "img2.jpg.jpeg",
-  "img3.jpg.jpeg",
-  "img4.jpg.jpeg",
-  "img5.jpg.jpeg",
-  "img6.jpg.jpeg",
-  "img7.jpg.jpeg",
-  "img8.jpg.jpeg",
-  "img9.jpg.jpeg",
-  "img10.jpg.jpeg"
+  "img1.jpg.jpeg","img2.jpg.jpeg","img3.jpg.jpeg","img4.jpg.jpeg",
+  "img5.jpg.jpeg","img6.jpg.jpeg","img7.jpg.jpeg",
+  "img8.jpg.jpeg","img9.jpg.jpeg","img10.jpg.jpeg"
 ];
 
 let i = 0;
@@ -216,3 +208,4 @@ setInterval(() => {
 
 </body>
 </html>
+
