@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Rose Day ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff758f, #ffb199);
+    overflow: hidden;
+    text-align: center;
+    color: white;
+}
+
+#centerText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3em;
+    font-weight: bold;
+    z-index: 1;
+}
+
+.rose {
+    position: absolute;
+    font-size: 2.5em;
+    animation: float 6s linear infinite;
+    cursor: pointer;
+    z-index: 2;
+}
+
+@keyframes float {
+    from { transform: translateY(110vh); }
+    to { transform: translateY(-10vh); }
+}
+
+#popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+}
+
+#popupContent {
+    background: white;
+    color: #333;
+    padding: 25px;
+    border-radius: 20px;
+    max-width: 360px;
+}
+
+button {
+    padding: 10px 22px;
+    margin: 10px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.yes { background: #ff4d6d; color: white; }
+.no { background: #ddd; }
+
+#slideshowPage {
+    display: none;
+    padding: 20px;
+}
+
+.slide {
+    width: 300px;
+    max-width: 90%;
+    border-radius: 18px;
+    margin: 15px 0;
+}
+
+.shayari {
+    font-size: 1.25em;
+    margin: 20px;
+}
+
+.heart {
+    position: absolute;
+    font-size: 1.8em;
+    animation: pop 1.2s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes pop {
+    from { transform: scale(0.6); opacity: 1; }
+    to { transform: scale(1.6) translateY(-80px); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div id="centerText">Happy Rose Day 🌹</div>
+
+<span class="rose" style="left:15%">🌹</span>
+<span class="rose" style="left:35%">🌹</span>
+<span class="rose" style="left:55%">🌹</span>
+<span class="rose" style="left:75%">🌹</span>
+
+<div id="popup">
+  <div id="popupContent">
+    <b>
+      Want to see my tomorrow night project,<br>
+      my little mutku 🐥 baby 🥰 ?
+    </b><br><br>
+    <button class="yes" onclick="goYes()">Yes 😏</button>
+    <button class="no" onclick="sayNo()">No 🙄</button>
+    <p id="noMsg"></p>
+  </div>
+</div>
+
+<div id="slideshowPage">
+  <audio autoplay loop>
+    <source src="Hua Hain Aaj Pehli Baar Sanam Re 128 Kbps.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="shayari">
+    Gulaab se zyada tum laal lagti ho,<br>
+    baaton mein nahi—khamoshi mein kamaal lagti ho.
+  </div>
+
+  <img id="slideImg" class="slide" src="img1.jpg.jpeg">
+
+  <div class="shayari">
+    Gulaab rakha hai kitaab mein chhupa kar,<br>
+    tum mil jao toh padh loon zindagi… 😉
+  </div>
+</div>
+
+<script>
+document.querySelectorAll(".rose").forEach(r => {
+  r.addEventListener("click", () => {
+    document.getElementById("popup").style.display = "flex";
+  });
+});
+
+function sayNo() {
+  document.getElementById("noMsg").innerText =
+    "Think again, are you sure 🙄🥺";
+}
+
+function goYes() {
+  document.getElementById("popup").style.display = "none";
+  document.getElementById("centerText").style.display = "none";
+  document.querySelectorAll(".rose").forEach(r => r.remove());
+  document.getElementById("slideshowPage").style.display = "block";
+}
+
+const images = [
+  "img1.jpg.jpeg",
+  "img2.jpg.jpeg",
+  "img3.jpg.jpeg",
+  "img4.jpg.jpeg",
+  "img5.jpg.jpeg",
+  "img6.jpg.jpeg",
+  "img7.jpg.jpeg",
+  "img8.jpg.jpeg",
+  "img9.jpg.jpeg",
+  "img10.jpg.jpeg"
+];
+
+let i = 0;
+
+function createHeart() {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.innerHTML = "💖";
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 1200);
+}
+
+setInterval(() => {
+  const img = document.getElementById("slideImg");
+  if (!img) return;
+  i = (i + 1) % images.length;
+  img.src = images[i];
+  createHeart();
+}, 2200);
+</script>
+
+</body>
+</html>
