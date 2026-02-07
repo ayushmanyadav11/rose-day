@@ -8,22 +8,25 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #ff758f, #ffb199);
+    background: linear-gradient(135deg, #ffe6ef, #ffd1dc);
     overflow: hidden;
     text-align: center;
-    color: white;
 }
 
+/* Center Text */
 #centerText {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 3em;
+    font-size: 3.2em;
     font-weight: bold;
+    color: #d6336c; /* PINK TEXT */
+    text-shadow: 2px 2px 8px rgba(255,255,255,0.6);
     z-index: 1;
 }
 
+/* Floating Roses */
 .rose {
     position: absolute;
     font-size: 2.5em;
@@ -37,6 +40,7 @@ body {
     to { transform: translateY(-10vh); }
 }
 
+/* Popup */
 #popup {
     display: none;
     position: fixed;
@@ -44,7 +48,7 @@ body {
     background: rgba(0,0,0,0.6);
     align-items: center;
     justify-content: center;
-    z-index: 5;
+    z-index: 10;
 }
 
 #popupContent {
@@ -67,6 +71,12 @@ button {
 .yes { background: #ff4d6d; color: white; }
 .no { background: #ddd; }
 
+#noMsg {
+    color: #ff4d6d;
+    margin-top: 10px;
+}
+
+/* Slideshow Page */
 #slideshowPage {
     display: none;
     padding: 20px;
@@ -76,24 +86,28 @@ button {
     width: 300px;
     max-width: 90%;
     border-radius: 18px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
     margin: 15px 0;
 }
 
 .shayari {
     font-size: 1.25em;
     margin: 20px;
+    color: #b30047;
 }
 
+/* Heart Animation */
 .heart {
     position: absolute;
     font-size: 1.8em;
     animation: pop 1.2s ease-out forwards;
     pointer-events: none;
+    z-index: 20;
 }
 
 @keyframes pop {
-    from { transform: scale(0.6); opacity: 1; }
-    to { transform: scale(1.6) translateY(-80px); opacity: 0; }
+    0% { transform: scale(0.6); opacity: 1; }
+    100% { transform: scale(1.6) translateY(-80px); opacity: 0; }
 }
 </style>
 </head>
@@ -102,42 +116,50 @@ button {
 
 <div id="centerText">Happy Rose Day 🌹</div>
 
+<!-- Floating Roses -->
 <span class="rose" style="left:15%">🌹</span>
 <span class="rose" style="left:35%">🌹</span>
 <span class="rose" style="left:55%">🌹</span>
 <span class="rose" style="left:75%">🌹</span>
 
+<!-- Popup -->
 <div id="popup">
   <div id="popupContent">
     <b>
       Want to see my tomorrow night project,<br>
       my little mutku 🐥 baby 🥰 ?
     </b><br><br>
+
     <button class="yes" onclick="goYes()">Yes 😏</button>
     <button class="no" onclick="sayNo()">No 🙄</button>
+
     <p id="noMsg"></p>
   </div>
 </div>
 
+<!-- Slideshow -->
 <div id="slideshowPage">
-  <audio autoplay loop>
+
+  <!-- MUSIC (name EXACTLY matches your file) -->
+  <audio id="bgMusic" controls loop>
     <source src="Hua Hain Aaj Pehli Baar Sanam Re 128 Kbps.mp3" type="audio/mpeg">
   </audio>
 
   <div class="shayari">
-    Gulaab se zyada tum laal lagti ho,<br>
-    baaton mein nahi—khamoshi mein kamaal lagti ho.
+    “Gulaab se zyada tum laal lagti ho,<br>
+    baaton mein nahi—khamoshi mein kamaal lagti ho.”
   </div>
 
   <img id="slideImg" class="slide" src="img1.jpg.jpeg">
 
   <div class="shayari">
-    Gulaab rakha hai kitaab mein chhupa kar,<br>
-    tum mil jao toh padh loon zindagi… 😉
+    “Gulaab rakha hai kitaab mein chhupa kar,<br>
+    tum mil jao toh padh loon zindagi… saari sharaarat ke saath.” 😉
   </div>
 </div>
 
 <script>
+/* Open popup on rose click */
 document.querySelectorAll(".rose").forEach(r => {
   r.addEventListener("click", () => {
     document.getElementById("popup").style.display = "flex";
@@ -154,8 +176,12 @@ function goYes() {
   document.getElementById("centerText").style.display = "none";
   document.querySelectorAll(".rose").forEach(r => r.remove());
   document.getElementById("slideshowPage").style.display = "block";
+
+  // Play music after user interaction (browser rule)
+  document.getElementById("bgMusic").play();
 }
 
+/* Images (exact names as your repo) */
 const images = [
   "img1.jpg.jpeg",
   "img2.jpg.jpeg",
@@ -175,6 +201,8 @@ function createHeart() {
   const h = document.createElement("div");
   h.className = "heart";
   h.innerHTML = "💖";
+  h.style.left = Math.random() * window.innerWidth + "px";
+  h.style.top = Math.random() * window.innerHeight + "px";
   document.body.appendChild(h);
   setTimeout(() => h.remove(), 1200);
 }
